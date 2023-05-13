@@ -1,0 +1,96 @@
+.randoma a {
+	color:#7579e7 !important;
+}
+.randomb a {
+	color:#ff80ab !important;
+}
+.randomc a {
+	color:#b58a78 !important;
+}
+.randomd a {
+	color:#01789b !important;
+}
+.randome a {
+	color:#e58a8a !important;
+}
+.randomf a {
+	color:#3f67d1 !important;
+}
+.randomg a {
+	color:#ea5055 !important;
+}
+.randomh a {
+	color: #ff9800 !important;
+}
+.randomi a {
+	color:#584974 !important;
+}
+
+.randoma:hover {
+    background:#7579e7 !important;
+    color:#fff !important;
+    box-shadow: 0 2px 18px #7579e7 !important;
+    border-color: #7579e7 !important;
+    transition: 0.15s linear;
+}
+.randomb:hover {
+	background:#ff80ab !important;
+    color:#fff !important;
+    box-shadow: 0 2px 18px #ff80ab !important;
+    border-color: #ff80ab !important;
+    transition: 0.15s linear;
+}
+.randomc:hover {
+	background:#b58a78 !important;
+    color:#fff !important;
+    box-shadow: 0 2px 18px #b58a78 !important;
+    border-color: #b58a78 !important;
+    transition: 0.15s linear;
+}
+.randomd:hover {
+	background:#01789b !important;
+    color:#fff !important;
+    box-shadow: 0 2px 18px #01789b !important;
+    border-color: #01789b !important;
+    transition: 0.15s linear;
+}
+.randome:hover {
+	background:#e58a8a !important;
+    color:#fff !important;
+    box-shadow: 0 2px 18px #e58a8a !important;
+    border-color: #e58a8a !important;
+    transition: 0.15s linear;
+}
+.randomf:hover {
+	background:#3f67d1 !important;
+    color:#fff !important;
+    box-shadow: 0 2px 18px #3f67d1 !important;
+    border-color: #3f67d1 !important;
+    transition: 0.15s linear;
+}
+.randomg:hover {
+	background:#ea5055 !important;
+    color:#fff !important;
+    box-shadow: 0 2px 18px #ea5055 !important;
+    border-color: #ea5055 !important;
+    transition: 0.15s linear;
+}
+.randomh:hover {
+	background: #ff9800 !important;
+    color:#fff !important;
+    box-shadow: 0 2px 18px #ff9800 !important;
+    border-color: #ff9800 !important;
+    transition: 0.15s linear;
+}
+.randomi:hover {
+	background:#584974 !important;
+    color:#fff !important;
+    box-shadow: 0 2px 18px #584974 !important;
+    border-color: #584974 !important;
+    transition: 0.15s linear;
+}
+
+.randoma a:hover, .randomb a:hover, .randomc a:hover, .randomd a:hover, .randome a:hover, .randomf a:hover, .randomg a:hover, .randomh a:hover, .randomi a:hover {
+    color: #fff !important;
+    transition: 0.1s linear;
+}
