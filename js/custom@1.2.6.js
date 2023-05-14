@@ -77,6 +77,7 @@ function switchDarkMode() {  // Switch Between Light And Dark Mode
 
 //动态分类条
 //https://npm.elemecdn.com/js-heo@1.0.11/categoryBar/categoryBar.js
+//分类页分类条
 function categoriesBarActive() {
   var urlinfo = window.location.pathname;
   urlinfo = decodeURIComponent(urlinfo)
@@ -111,6 +112,28 @@ function categoriesBarActive() {
       if (document.querySelector('#category-bar')) {
         document.getElementById(id).classList.add("select");
       }
+    }
+  }
+  categoriesBarNext()
+}
+//标签页分类条
+function tagsBarActive() {
+  var urlinfo = window.location.pathname;
+  urlinfo = decodeURIComponent(urlinfo)
+  // console.log(urlinfo);
+  // 验证是否是标签链接
+  var pattern = /\/tags\/.*?\//;
+  var patbool = pattern.test(urlinfo);
+  var valuegroup = urlinfo.split("/");
+  for (var n = 0; n <= valuegroup.length; n++) {
+    n = valuegroup.length;
+    var nowCategorie = valuegroup[n - 2];
+  }
+  // console.log(patbool);
+  if (patbool) {
+    // console.log(valuegroup[2]);
+    if (document.querySelector('#tags-bar')) {
+      document.getElementById(nowCategorie).classList.add("select");
     }
   }
   categoriesBarNext()
@@ -179,15 +202,67 @@ function getTimeState() {
   return text;
 }
 function changeSayHelloText() {
-  const e = ["🤖️ 数码科技爱好者", "🔍 分享与热心帮助", "🏠 智能家居小能手", "🔨 设计开发一条龙", "🤝 专修交互与设计", "🏃 脚踏实地行动派", "🧱 团队小组发动机", "💢 壮汉人狠话不多"]
+  const e = ["🤖️ 数码科技爱好者", "🔍 善于发现细节", "💻️ 互联网产品经理",, "🏠 智能家居小能手", "🔨 折腾研究不停息", "🧲 铁骨铮铮郭某人", "🙅‍♂ 甜食坚决抵制者", "🌦️ 雨中漫步独欢喜", "🔥 一腔热血好青年", "🏕️ 户外活动冲冲冲", "📸 人间美好捕捉师","⚛️ 1% 稀有 INFJ 物种","♋️ 生活全能手巨蟹座","🌊 大海的忠实听众","🕊️ 热爱自由与和平"]
     , t = document.getElementById("author-info__sayhi");
   let o = e[Math.floor(Math.random() * e.length)];
+  let lastSayHello = "";
   for (; o === lastSayHello;)
     o = e[Math.floor(Math.random() * e.length)];
   t.textContent = o,
     lastSayHello = o
 }
-
+function addFriendLinksInFooter() {
+  fetch("/link.json").then((e => e.json())).then((e => {
+    var t = []
+      , o = -1;
+    for (const link of e) {
+      const link_list = link.link_list;
+      for (let i = 0; i < Math.min(link_list.length, 6 - t.length); i++) {
+        let n = Math.floor(Math.random() * link_list.length);
+        for (; n === o && link_list.length > 1;)
+          n = Math.floor(Math.random() * link_list.length);
+        o = n,
+          t.push({
+            name: link_list[n].name,
+            link: link_list[n].link
+          }),
+          link_list.splice(n, 1)
+      }
+    }
+    if (t.length > 0) {
+      t.pop();
+      // 将输出结果控制在 <= 4，保证页脚排版美观
+      t = t.slice(0, 4);
+      var n = "";
+      for (let e = 0; e < t.length; ++e) {
+        var a = t[e];
+        n += `<a class='footer-item' href='${a.link}'  target="_blank" rel="noopener nofollow">${a.name}</a>`
+      }
+      n += "<a class='footer-item' href='/link/'>更多</a>",
+      document.getElementById("friend-links-in-footer").innerHTML = n
+    }
+  }
+  ))
+}
+//友链随机访问
+function travelling() {
+  fetch("https://friends.guole.fun/randomfriend").then((e=>e.json())).then((e=>{
+      var t = e.link
+        , o = "点击前往按钮进入随机一个友链，不保证跳转网站的安全性和可用性。本次随机到的是本站友链：「" + e.name + "」";
+      document.styleSheets[0].addRule(":root", "--heo-snackbar-time:8000ms!important"),
+      Snackbar.show({
+          text: o,
+          duration: 8e3,
+          pos: "top-center",
+          actionText: "前往",
+          onActionClick: function(e) {
+              $(e).css("opacity", 0),
+              window.open(t, "_blank")
+          }
+      })
+  }
+  ))
+}
 //复制文章链接
 function copyPageUrl() {
   var url = window.location.href;
@@ -219,14 +294,18 @@ function AddRewardMask() {
 }
 
 //方法调用
-categoriesBarActive()
-topCategoriesBarScroll()
-sayhi()
-qrcodeCreate()
+categoriesBarActive();
+tagsBarActive();
+topCategoriesBarScroll();
+sayhi();
+qrcodeCreate();
+addFriendLinksInFooter();
 //pjax 兼容：只要 pjax 结束就执行
 document.addEventListener("pjax:complete", (function () {
-  categoriesBarActive()
-  topCategoriesBarScroll()
-  sayhi()
-  qrcodeCreate()
+  categoriesBarActive();
+  tagsBarActive();
+  topCategoriesBarScroll();
+  sayhi();
+  qrcodeCreate();
+  addFriendLinksInFooter();
 }))

@@ -1,5 +1,5 @@
 var fdata = {
-    apiurl: 'https://friends.guole.fun/all',
+    apiurl: 'https://friends.guole.fun/',
     defaultFish: 100,
     hungryFish: 100,
   }
